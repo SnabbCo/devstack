@@ -291,6 +291,11 @@ function configure_neutron {
     fi
 
     _configure_neutron_debug_command
+
+    iniset $NEUTRON_CONF ml2 type_drivers "local,zone"
+    iniset $NEUTRON_CONF ml2 mechanism_drivers "logger,snabb"
+
+    iniset $NEUTRON_CONF ml2_snabb zone_definition_file "/etc/neutron/plugins/ml2/ml2_zones.conf"
 }
 
 function create_nova_conf_neutron {
